@@ -14,7 +14,7 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 - Docker support for containerized deployment.
 
 ## 📂 Project Structure
-
+```
 📦 KafkaOrderSystem
 ├─ 📁 KafkaOrderSystem.Producer
 │   ├─ 📄 OrderController.cs
@@ -24,7 +24,7 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 │   └─ 📄 Program.cs
 ├─ 📄 README.md
 └─ 📄 docker-compose.yml
-
+```
 ## 🚧 Installation
 
 ### Clone the repository
