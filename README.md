@@ -22,6 +22,8 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 ├─ 📁 KafkaOrderSystem.Consumer
 │   ├─ 📄 Worker.cs
 │   └─ 📄 Program.cs
+├─ 📁 KafkaOrderSystem.Shared
+│   └─ 📄 OrderModel.cs
 ├─ 📄 README.md
 └─ 📄 docker-compose.yml
 ```
