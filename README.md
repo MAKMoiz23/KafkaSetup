@@ -5,13 +5,13 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 
 ## ✨ Features
 
-**Order producer service to publish order messages to Kafka topics.
+- **Order producer service to publish order messages to Kafka topics.
 
-**Consumer service to process orders from Kafka topics.
+- **Consumer service to process orders from Kafka topics.
 
-**Swagger UI for API testing.
+- **Swagger UI for API testing.
 
-**Docker support for containerized deployment.
+- **Docker support for containerized deployment.
 
 ## 📂 Project Structure
 
