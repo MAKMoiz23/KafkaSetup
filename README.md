@@ -5,13 +5,13 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 
 ## ✨ Features
 
-✅ Order producer service to publish order messages to Kafka topics.
+**Order producer service to publish order messages to Kafka topics.
 
-✅ Consumer service to process orders from Kafka topics.
+**Consumer service to process orders from Kafka topics.
 
-✅ Swagger UI for API testing.
+**Swagger UI for API testing.
 
-✅ Docker support for containerized deployment.
+**Docker support for containerized deployment.
 
 ## 📂 Project Structure
 
@@ -28,20 +28,25 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 ## 🚧 Installation
 
 ### Clone the repository
+```
 git clone https://github.com/username/KafkaOrderSystem.git
-
+```
 ### Navigate to the project directory
+```
 cd KafkaOrderSystem
-
+```
 ### Install dependencies for both Producer and Consumer
+```
 dotnet restore
-
+```
 ### Run Producer Service
+```
 dotnet run --project KafkaOrderSystem.Producer
-
+```
 ### Run Consumer Service
+```
 dotnet run --project KafkaOrderSystem.Consumer
-
+```
 ## 🧪 Usage
 
 Producer API: Submit orders via the OrderController.
