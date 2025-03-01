@@ -1,21 +1,20 @@
-📦 KafkaOrderSystem
+# 📦 KafkaOrderSystem
 
-🚀 Description
-
+## 🚀 Description
 KafkaOrderSystem is a backend application that leverages Apache Kafka for message brokering, enabling efficient processing of order data. It includes producer and consumer services developed using .NET Core.
 
-✨ Features
+## ✨ Features
 
-✅ Order producer service to publish order messages to Kafka topics.
+- Order producer service to publish order messages to Kafka topics.
 
-✅ Consumer service to process orders from Kafka topics.
+- Consumer service to process orders from Kafka topics.
 
-✅ Swagger UI for API testing.
+- Swagger UI for API testing.
 
-✅ Docker support for containerized deployment.
+- Docker support for containerized deployment.
 
-📂 Project Structure
-
+## 📂 Project Structure
+```
 📦 KafkaOrderSystem
 ├─ 📁 KafkaOrderSystem.Producer
 │   ├─ 📄 OrderController.cs
@@ -23,57 +22,58 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 ├─ 📁 KafkaOrderSystem.Consumer
 │   ├─ 📄 Worker.cs
 │   └─ 📄 Program.cs
+├─ 📁 KafkaOrderSystem.Shared
+│   └─ 📄 OrderModel.cs
 ├─ 📄 README.md
 └─ 📄 docker-compose.yml
+```
+## 🚧 Installation
 
-🚧 Installation
-
-# Clone the repository
+### Clone the repository
+```
 git clone https://github.com/username/KafkaOrderSystem.git
-
-# Navigate to the project directory
+```
+### Navigate to the project directory
+```
 cd KafkaOrderSystem
-
-# Install dependencies for both Producer and Consumer
+```
+### Install dependencies for both Producer and Consumer
+```
 dotnet restore
-
-# Run Producer Service
+```
+### Run Producer Service
+```
 dotnet run --project KafkaOrderSystem.Producer
-
-# Run Consumer Service
+```
+### Run Consumer Service
+```
 dotnet run --project KafkaOrderSystem.Consumer
-
-🧪 Usage
+```
+## 🧪 Usage
 
 Producer API: Submit orders via the OrderController.
 
 Consumer Service: Automatically consumes orders from Kafka.
 
-🔍 API Endpoints
+## 🔍 API Endpoints
 
-Method
+**Method** -> POST
 
-Endpoint
+**Endpoint** -> /api/order
 
-Description
+**Description** -> Submit a new order
 
-POST
+## 🧰 Technologies Used
 
-/api/order
+### 🟦 .NET Core
 
-Submit a new order
+### ☕ Kafka
 
-🧰 Technologies Used
+### 🐳 Docker
 
-🟦 .NET Core
+### 🌐 Swagger UI
 
-☕ Kafka
-
-🐳 Docker
-
-🌐 Swagger UI
-
-🛠️ Configuration
+## 🛠️ Configuration
 
 Set up Kafka: Ensure Kafka is running locally using Docker or manually.
 
