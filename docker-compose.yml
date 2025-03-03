@@ -1,6 +1,5 @@
 services:
 
-
   zookeeper:
     image: confluentinc/cp-zookeeper:6.1.1
     hostname: zookeeper
@@ -19,12 +18,13 @@ services:
       - zookeeper
     ports:
       - "9092:9092"
-      - "9101:9101"
+      - "29092:29092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://103.70.85.10:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
@@ -179,15 +179,22 @@ services:
 
   kafkaordersystem.consumer:
     image: ${DOCKER_REGISTRY-}kafkaordersystemconsumer
+    depends_on:       
+      - broker
+    environment:
+      Kafka__BootstrapServers: "broker:29092"
     build:
       context: .
       dockerfile: KafkaOrderSystem.Consumer/Dockerfile
 
   kafkaordersystem.producer:
     image: ${DOCKER_REGISTRY-}kafkaordersystemproducer
+    depends_on:
+      - broker
     build:
       context: .
       dockerfile: KafkaOrderSystem.Producer/Dockerfile
     ports: 
-    - "8080:8081"
+    - "5033"
+
 
