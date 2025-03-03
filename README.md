@@ -41,14 +41,15 @@ cd KafkaOrderSystem
 ```
 dotnet restore
 ```
-### Run Producer Service
+### Run and build Services
 ```
-dotnet run --project KafkaOrderSystem.Producer
+docker-compose up --bulid
 ```
-### Run Consumer Service
+### Run Services
 ```
-dotnet run --project KafkaOrderSystem.Consumer
+docker-compose up
 ```
+
 ## 🧪 Usage
 
 Producer API: Submit orders via the OrderController.
@@ -70,14 +71,3 @@ Consumer Service: Automatically consumes orders from Kafka.
 ### ☕ Kafka
 
 ### 🐳 Docker
-
-### 🌐 Swagger UI
-
-## 🛠️ Configuration
-
-Set up Kafka: Ensure Kafka is running locally using Docker or manually.
-
-Environment Variables: Create a .env file with the following:
-
-KAFKA_BROKER=localhost:9092
-KAFKA_TOPIC=order-topic
