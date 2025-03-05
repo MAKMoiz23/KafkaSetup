@@ -23,6 +23,11 @@ namespace KafkaOrderSystem.Producer.Controller
         {
             try
             {
+                if(order.ProductName is null || order.Quantity <= 0)
+                {
+                    return BadRequest("Product name and quantity are required.");
+                }
+
                 var orderJson = JsonConvert.SerializeObject(order);
                 var message = new Message<Null, string> { Value = orderJson };
                 await _orderProducer.ProduceAsync("order-topic", message, cancellationToken);
