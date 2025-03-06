@@ -31,7 +31,7 @@ KafkaOrderSystem is a backend application that leverages Apache Kafka for messag
 
 ### Clone the repository
 ```
-git clone https://github.com/username/KafkaOrderSystem.git
+git clone https://github.com/MAKMoiz23/KafkaSetup.git
 ```
 ### Navigate to the project directory
 ```
