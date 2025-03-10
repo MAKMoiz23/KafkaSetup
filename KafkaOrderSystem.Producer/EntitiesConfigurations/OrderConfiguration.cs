@@ -9,9 +9,18 @@ namespace KafkaOrderSystem.Producer.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(o => o.Id);
+
+            builder.Property(u => u.Id)
+                .HasDefaultValueSql("gen_random_uuid()");
+            
             builder.HasMany(o => o.OrderItems)
-                .WithOne(oi => oi.Order);
-            //builder.Property(o => o.OrderNo).HasValueGenerator(o => o.);
+            .WithOne(oi => oi.Order);
+
+            builder.Property(o => o.OrderNo)
+                .IsRequired();
+
+            builder.Property(o => o.OrderNo)
+                .ValueGeneratedOnAdd();
         }
     }
 }

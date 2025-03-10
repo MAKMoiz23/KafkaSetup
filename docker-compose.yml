@@ -209,6 +209,13 @@ services:
     ports:
       - 5432:5432
 
+
+  kafkaordersystem.cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+
 volumes:
   orderservice-db:
   

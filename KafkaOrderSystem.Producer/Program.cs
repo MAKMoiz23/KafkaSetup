@@ -1,5 +1,7 @@
 using Confluent.Kafka;
 using KafkaOrderSystem.Producer.Database;
+using KafkaOrderSystem.Producer.Extensions;
+using KafkaOrderSystem.Producer.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 builder.Services.AddSingleton<IProducer<Null, string>>(sp =>
 {
     var config = new ProducerConfig
@@ -28,6 +32,11 @@ builder.Services.AddSingleton<IProducer<Null, string>>(sp =>
 builder.Services.AddDbContext<ApiDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+});
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Cache");
 });
 
 // Add Controllers
@@ -46,6 +55,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ApplyMigration();
 }
 
 //app.UseHttpsRedirection();

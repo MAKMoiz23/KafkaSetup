@@ -42,8 +42,8 @@ namespace KafkaOrderSystem.Consumer
                             continue;
                         }
 
-                        _logger.LogInformation("Processed Order: {ProductName} - Quantity: {Quantity}",
-                            order.ProductName, order.Quantity);
+                        _logger.LogInformation("Processed Order: {OrderNo} - No. of Products: {NoOfProducts}",
+                            order.OrderNo, order.NoOfproducts);
 
                         await Task.Delay(500, stoppingToken); // Simulate async work
 

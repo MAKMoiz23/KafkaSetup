@@ -2,8 +2,8 @@
 {
     public class Order : BaseEntity
     {
-        public string OrderNo { get; set; }
+        public long OrderNo { get; set; }
 
-        public IEnumerable<OrderItems> OrderItems { get; set; } = [];
+        public ICollection<OrderItems> OrderItems { get; set; } = [];
     }
 }

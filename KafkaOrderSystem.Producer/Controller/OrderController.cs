@@ -1,8 +1,6 @@
-﻿using Confluent.Kafka;
-using KafkaOrderSystem.Producer.Models.Response.Order;
-using KafkaOrderSystem.Shared.Models.Order;
+﻿using KafkaOrderSystem.Producer.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using KafkaOrderSystem.Producer.Models.Request.Order;
 
 namespace KafkaOrderSystem.Producer.Controller
 {
@@ -10,32 +8,35 @@ namespace KafkaOrderSystem.Producer.Controller
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IProducer<Null, string> _orderProducer;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IProducer<Null, string> orderProducer)
+        public OrderController(IOrderService orderService)
         {
-            _orderProducer = orderProducer;
+            _orderService = orderService;
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> ProcessOrder([FromBody] OrderModel order, CancellationToken cancellationToken)
+        [HttpPost("ProcessOrder")]
+        public async Task<IActionResult> ProcessOrder([FromBody] CreateOrderRequest order, CancellationToken cancellationToken)
         {
             try
             {
-                if(order.ProductName is null || order.Quantity <= 0)
-                {
-                    return BadRequest("Product name and quantity are required.");
-                }
-
-                var orderJson = JsonConvert.SerializeObject(order);
-                var message = new Message<Null, string> { Value = orderJson };
-                await _orderProducer.ProduceAsync("order-topic", message, cancellationToken);
-                return Ok(new ProcessOrderResponse
-                {
-                    IsSuccess = true,
-                    Message = "Order processed successfully"
-                });
+                var result = await _orderService.ProcessOrder(order, cancellationToken);
+                return result.IsSuccess ? NoContent() : BadRequest(result.Error);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
+        [HttpGet("GetAllOrders")]
+        public async Task<IActionResult> GetAllOrders(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var result = await _orderService.GetAllOrders(cancellationToken);
+                return result.IsSuccess ? Ok(result.Data) : BadRequest(result.Error);
             }
             catch (Exception)
             {
