@@ -196,6 +196,21 @@ services:
       context: .
       dockerfile: KafkaOrderSystem.Producer/Dockerfile
     ports: 
-    - "5033"
+      - "5033"
+
+  kafkaordersystem.database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=ordersystem
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - orderservice-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  orderservice-db:
+  
 
 

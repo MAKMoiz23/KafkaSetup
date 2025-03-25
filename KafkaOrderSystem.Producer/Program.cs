@@ -1,4 +1,6 @@
 using Confluent.Kafka;
+using KafkaOrderSystem.Producer.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,11 @@ builder.Services.AddSingleton<IProducer<Null, string>>(sp =>
         BootstrapServers = builder.Configuration.GetValue<string>("Kafka:BootstrapServers")
     };
     return new ProducerBuilder<Null, string>(config).Build();
+});
+
+builder.Services.AddDbContext<ApiDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
 // Add Controllers

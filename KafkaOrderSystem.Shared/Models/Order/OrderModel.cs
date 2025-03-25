@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace KafkaOrderSystem.Shared.Models.Order
+﻿namespace KafkaOrderSystem.Shared.Models.Order
 {
     public class OrderModel
     {
